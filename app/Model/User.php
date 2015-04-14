@@ -8,7 +8,15 @@ class User extends AppModel {
 
     var $virtualFields = array('name'=>"concat(first_name,' ',last_name)");
 
-    var $validate = array();
+    var $validate = array (
+        'birthdate' => array (
+            'checkBirthdate' => array (
+                'rule' => 'checkBirthdate',
+                'message' => 'Birthdate is invalid',
+                'allowEmpty' => true
+            )
+        )
+    );
 
     function beforeSave($options = array())
     {
@@ -94,5 +102,14 @@ class User extends AppModel {
             $check = true;
         }
         return $check;
+    }
+
+    function checkBirthdate()
+    {
+        if($this->data['User']['birthdate'] > date('d-m-Y'))
+        {
+            return false;
+        }
+        return true;
     }
 }
