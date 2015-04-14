@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('email');
 		echo $this->Form->input('password');
-		echo $this->Form->input('avatar', array('type' => 'file'));
+		echo $this->Form->input('avatar_upload', array('type' => 'file'));
 		echo $this->Form->input('first_name');
 		echo $this->Form->input('last_name');
 		echo $this->Form->input('birthdate');

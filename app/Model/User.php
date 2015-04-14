@@ -15,7 +15,7 @@ class User extends AppModel {
         parent::beforeSave($options);
         if (isset($this->data['User']['password']))
         {
-            $this->data['User']['password'] = Security::hash($this->data['User']['password'], 'sha1', true);
+            $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
         }
 
         if(isset($this->data['User']['birthdate']))
@@ -39,5 +39,60 @@ class User extends AppModel {
             Tool::moveUploadFile($photoPath, $this->data['User']['avatar']);
         }
         /* ---------- Move main photo } ---------- */
+    }
+
+    function checkPhoto()
+    {
+        if ($this->data['User']['avatar_upload'] == UPLOAD_INVALID_TYPE)
+        {
+            $this->_validator['avatar_upload']['checkPhoto']->message = 'Invalid photo type';
+            return false;
+        }
+        else if ($this->data['User']['avatar_upload'] == UPLOAD_INVALID_SIZE)
+        {
+            $this->_validator['avatar_upload']['checkPhoto']->message = 'Invalid photo size';
+            return false;
+        }
+        else
+        {
+            if (!empty($this->data['User']['avatar_upload']))
+            {
+                // Delete old file
+                @unlink(Configure::read('S.uploadDir.User') . $this->id . DS . $this->data['User']['avatar']);
+                $this->data['User']['avatar'] = $this->data['User']['avatar_upload'];
+            }
+
+            return true;
+        }
+    }
+
+    /**
+     * validate confirm password
+     * @return bool
+     */
+    public function checkConfirmPassword()
+    {
+        return ($this->data['User']['password'] === $this->data['User']['password_confirm']);
+    }
+
+    /**
+     * validate old password
+     * @return bool
+     */
+    public function checkOldPassword()
+    {
+        $check = false;
+
+        $oldPassword = $this->data['User']['old_password'];
+        $user = $this->find('first', array(
+            'conditions' => array(
+                'User.id' => AuthComponent::user('id'),
+                'User.password' => AuthComponent::password($oldPassword)
+            )
+        ));
+        if ($user) {
+            $check = true;
+        }
+        return $check;
     }
 }

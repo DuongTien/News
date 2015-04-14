@@ -10,6 +10,9 @@
     if (!defined('UPLOAD_INVALID_SIZE')) {define('UPLOAD_INVALID_SIZE', 2);}
     if (!defined('MAX_IMAGE_SIZE')) { define('MAX_IMAGE_SIZE', 2097152); } // 2MB
 
+    // Base upload directory
+    if (!defined('BASE_UPLOAD_DIR')) {define('BASE_UPLOAD_DIR', WWW_ROOT.'img'.DS.'uploads'.DS);}
+
     $config['S'] = array(
         'User' => array(
             'group' => array(
@@ -26,6 +29,9 @@
                 1 => __('true'),
                 0 => __('false')
             )
-        )
+        ),
+        'uploadDir' => array(
+            'User' => BASE_UPLOAD_DIR. 'users'.DS
+        ),
     );
 ?>
