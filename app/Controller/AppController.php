@@ -31,4 +31,21 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+    var $components = array('Cookie', 'Session');
+    var $uses = array('User');
+
+    function beforeFilter()
+    {
+        parent::beforeFilter();
+
+        if (strpos($this->action, 'admin_') !== false)
+        {
+            $this->layout = 'default';
+        }
+        else
+        {
+            $this->layout = 'frontend';
+        }
+    }
 }

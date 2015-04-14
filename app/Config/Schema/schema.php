@@ -40,7 +40,6 @@ class AppSchema extends CakeSchema {
         'id' => array('type' => 'biginteger', 'null' => false, 'length' => 20, 'key' => 'primary'),
         'email' => array('type' => 'string', 'null' => false, 'unique' => true),
         'password' => array('type' => 'string', 'null' => true),
-        'auth_token' => array('type' => 'string'),
         'avatar' => array('type' => 'string','length'=>255),
         'first_name' => array('type' => 'string', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
         'last_name' => array('type' => 'string', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
