@@ -14,6 +14,7 @@ class ArticlesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+    public $uses = array('Article', 'Category');
 
 /**
  * admin_index method
@@ -55,6 +56,10 @@ class ArticlesController extends AppController {
 				$this->Session->setFlash(__('The article could not be saved. Please, try again.'));
 			}
 		}
+        else
+        {
+            $this->set('categories', $this->Category->find('list',array('conditions' => array('active' => true))));
+        }
 	}
 
 /**

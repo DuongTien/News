@@ -5,6 +5,11 @@
     if (!defined('GENDER_MALE')) {define('GENDER_MALE', 1);}
     if (!defined('GENDER_FEMALE')) {define('GENDER_FEMALE', 2);}
 
+    // upload file
+    if (!defined('UPLOAD_INVALID_TYPE')) {define('UPLOAD_INVALID_TYPE', 1);}
+    if (!defined('UPLOAD_INVALID_SIZE')) {define('UPLOAD_INVALID_SIZE', 2);}
+    if (!defined('MAX_IMAGE_SIZE')) { define('MAX_IMAGE_SIZE', 2097152); } // 2MB
+
     $config['S'] = array(
         'User' => array(
             'group' => array(

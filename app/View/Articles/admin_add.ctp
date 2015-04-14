@@ -1,9 +1,9 @@
 <div class="articles form">
-<?php echo $this->Form->create('Article'); ?>
+<?php echo $this->Form->create('Article',array('enctype'=>'multipart/form-data')); ?>
 	<fieldset>
 		<legend><?php echo __('Admin Add Article'); ?></legend>
 	<?php
-		echo $this->Form->input('category_id');
+		echo $this->Form->input('category_id', array('empty' => '---'.__('Select category').'---', 'type' => 'select', 'options' => $categories));
 		echo $this->Form->input('title');
 		echo $this->Form->input('description');
 		echo $this->Form->input('content');
