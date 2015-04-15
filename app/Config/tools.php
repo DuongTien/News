@@ -7,12 +7,12 @@ class Tool
 {
     public static function uploadFile($dirPath,$data,$allow=null)
     {
+
         if(empty($data['name']))
         {
             return null; // No file uploaded
         }
-        
-        $name = $data['name'];     
+        $name = $data['name'];
         $alias = Tool::getAlias($name);
         $tmp = $data['tmp_name'];
         

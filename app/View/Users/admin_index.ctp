@@ -20,7 +20,7 @@
 	<tr>
 		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['avatar']); ?>&nbsp;</td>
+		<td><?php echo $this->Image->resize($user['User']['avatar'], Configure::read('S.uploadDir.User').$user['User']['id'], 80, 50,array(),true); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['first_name']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['last_name']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['birthdate']); ?>&nbsp;</td>

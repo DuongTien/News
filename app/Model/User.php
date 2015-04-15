@@ -15,6 +15,13 @@ class User extends AppModel {
                 'message' => 'Birthdate is invalid',
                 'allowEmpty' => true
             )
+        ),
+        'avatar_upload' => array(
+            'checkPhoto' => array(
+                'rule' => 'checkPhoto',
+                'message' => 'Avatar invalid',
+                'allowEmpty' => true
+            )
         )
     );
 
@@ -23,13 +30,13 @@ class User extends AppModel {
         parent::beforeSave($options);
         if (isset($this->data['User']['password']))
         {
-            $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+            $this->data['User']['password'] = Security::hash($this->data['User']['password'], 'sha1', true);
         }
 
-        if(isset($this->data['User']['birthdate']))
-        {
-            $this->data['User']['birthdate'] = Tool::switchDate($this->data['User']['birthdate']);
-        }
+//        if(isset($this->data['User']['birthdate']))
+//        {
+//            $this->data['User']['birthdate'] = Tool::switchDate($this->data['User']['birthdate']);
+//        }
 
         return true;
     }
@@ -42,7 +49,7 @@ class User extends AppModel {
         $photoPath = Configure::read('S.uploadDir.User') . $id . DS;
 
         /* ---------- Move main photo { ---------- */
-        if ($created)
+        if (!empty($this->data['User']['avatar']))
         {
             Tool::moveUploadFile($photoPath, $this->data['User']['avatar']);
         }
@@ -106,7 +113,7 @@ class User extends AppModel {
 
     function checkBirthdate()
     {
-        if($this->data['User']['birthdate'] > date('d-m-Y'))
+        if($this->data['User']['birthdate'] > date('Y-m-d'))
         {
             return false;
         }

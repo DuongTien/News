@@ -48,7 +48,8 @@ class UsersController extends AppController {
 	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
-			if ($this->User->save($this->request->data)) {
+            $this->request->data['User']['avatar_upload'] = Tool::uploadFile(Configure::read('S.uploadDir.tmp'),$this->request->data['User']['avatar_upload'],'image');
+            if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -69,7 +70,9 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->User->save($this->request->data)) {
+
+            $this->request->data['User']['avatar_upload'] = Tool::uploadFile(Configure::read('S.uploadDir.tmp'),$this->request->data['User']['avatar_upload'],'image');
+            if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {

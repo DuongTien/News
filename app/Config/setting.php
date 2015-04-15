@@ -31,7 +31,9 @@
             )
         ),
         'uploadDir' => array(
-            'User' => BASE_UPLOAD_DIR. 'users'.DS
+            'User' => BASE_UPLOAD_DIR. 'users'.DS,
+            'tmp'=>BASE_UPLOAD_DIR . 'tmp'.DS,
+            'cache' => BASE_UPLOAD_DIR . 'cache'.DS
         ),
     );
 ?>

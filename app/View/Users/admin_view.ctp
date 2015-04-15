@@ -13,7 +13,7 @@
 		</dd>
 		<dt><?php echo __('Avatar'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['avatar']); ?>
+			<?php echo $this->Image->resize($user['User']['avatar'], Configure::read('S.uploadDir.User').$user['User']['id'], 80, 80,array(),true); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('First Name'); ?></dt>
