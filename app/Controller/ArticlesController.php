@@ -24,7 +24,8 @@ class ArticlesController extends AppController {
 	public function admin_index() {
 		$this->Article->recursive = 0;
 		$this->set('articles', $this->Paginator->paginate());
-	}
+        $this->set('categories', $this->Category->find('list',array('conditions' => array('active' => true))));
+    }
 
 /**
  * admin_view method
@@ -82,8 +83,9 @@ class ArticlesController extends AppController {
 			}
 		} else {
 			$options = array('conditions' => array('Article.' . $this->Article->primaryKey => $id));
-			$this->request->data = $this->Article->find('first', $options);
-		}
+            $this->request->data = $this->Article->find('first', $options);
+            $this->set('categories', $this->Category->find('list',array('conditions' => array('active' => true))));
+        }
 	}
 
 /**

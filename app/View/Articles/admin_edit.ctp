@@ -4,10 +4,10 @@
 		<legend><?php echo __('Admin Edit Article'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('category_id');
+		echo $this->Form->input('category_id',array('type' => 'select','empty' => '---'.__('Select category').'---', 'options' => $categories));
 		echo $this->Form->input('title');
 		echo $this->Form->input('description');
-		echo $this->Form->input('content');
+		echo $this->Form->input('content',array('type' => 'textarea', 'class' => 'mceAdvance'));
 		echo $this->Form->input('active');
 	?>
 	</fieldset>

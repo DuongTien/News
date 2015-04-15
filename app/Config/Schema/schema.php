@@ -59,12 +59,12 @@ class AppSchema extends CakeSchema {
     );
 
     public $articles = array(
-       'id' => array('type' => 'integer', 'null' => false, 'key' => 'primary', 'null' => false),
-       'category_id' => array('type' => 'integer', 'null' => false, 'key' => 'primary', 'null' => false),
+       'id' => array('type' => 'integer', 'null' => false, 'length' => 20, 'key' => 'primary',),
+       'category_id' => array('type' => 'integer', 'null' => false, 'null' => false),
        'title' => array('type' => 'string', 'collate' => 'utf8_general_ci', 'charset' => 'utf8', 'length' =>255, 'null' => false),
        'description' => array('type' => 'string', 'collate' => 'utf8_general_ci', 'charset' => 'utf8', 'length' =>2000, 'null' => false),
        'content' => array('type' => 'text', 'collate' => 'utf8_general_ci', 'charset' => 'utf8','length' => 4000, 'null' => false),
-       'active' => array('type' => 'boolean', 'null' => false,),
+       'active' => array('type' => 'boolean', 'default' => true),
        'created' => array('type' => 'datetime', 'null' => false,),
        'modified' => array('type' => 'datetime', 'null' => false,),
        'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),

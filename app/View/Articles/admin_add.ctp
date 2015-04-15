@@ -6,7 +6,7 @@
 		echo $this->Form->input('category_id', array('empty' => '---'.__('Select category').'---', 'type' => 'select', 'options' => $categories));
 		echo $this->Form->input('title');
 		echo $this->Form->input('description');
-		echo $this->Form->input('content');
+		echo $this->Form->input('content',array('type'=>'textarea','class'=>'mceAdvance'));
 		echo $this->Form->input('active');
 	?>
 	</fieldset>

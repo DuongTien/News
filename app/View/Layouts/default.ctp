@@ -30,11 +30,19 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		echo $this->Html->css('cake.generic');
 
-		echo $this->fetch('meta');
+
+        echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+        echo $this->Html->script('../frontend/js/jquery-1.9.1');
+        echo $this->Html->script('../frontend/js/jquery-ui-1.10.3.custom.min');
+        echo $this->Html->script('../frontend/js/tinymce/tinymce.min');
+        echo $this->Html->script('../frontend/js/global');
 	?>
 </head>
+<script type="text/javascript">
+    var baseUrl = "<?php echo Router::url('/',true); ?>";
+</script>
 <body>
 	<div id="container">
 		<div id="header">

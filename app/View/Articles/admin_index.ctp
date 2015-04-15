@@ -7,10 +7,8 @@
 			<th><?php echo $this->Paginator->sort('category_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('title'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
-			<th><?php echo $this->Paginator->sort('content'); ?></th>
 			<th><?php echo $this->Paginator->sort('active'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -18,13 +16,11 @@
 	<?php foreach ($articles as $article): ?>
 	<tr>
 		<td><?php echo h($article['Article']['id']); ?>&nbsp;</td>
-		<td><?php echo h($article['Article']['category_id']); ?>&nbsp;</td>
+		<td><?php echo $categories[$article['Article']['category_id']]; ?>&nbsp;</td>
 		<td><?php echo h($article['Article']['title']); ?>&nbsp;</td>
 		<td><?php echo h($article['Article']['description']); ?>&nbsp;</td>
-		<td><?php echo h($article['Article']['content']); ?>&nbsp;</td>
-		<td><?php echo h($article['Article']['active']); ?>&nbsp;</td>
+		<td><?php echo Configure::read('S.System.active.'.intval($article['Article']['active'])); ?>&nbsp;</td>
 		<td><?php echo h($article['Article']['created']); ?>&nbsp;</td>
-		<td><?php echo h($article['Article']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $article['Article']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $article['Article']['id'])); ?>
