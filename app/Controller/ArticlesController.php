@@ -108,4 +108,12 @@ class ArticlesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+    public function index() {
+        $this->Paginator->settings['conditions'] = array('active' => true);
+        $this->Paginator->settings['limit'] = 5;
+        $articles = $this->paginate('Article');
+        $this->set(compact('articles'));
+    }
 }

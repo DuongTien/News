@@ -33,7 +33,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
     var $components = array('Cookie', 'Session');
-    var $uses = array('User');
+    var $uses = array('User','Category');
 
     function beforeFilter()
     {
@@ -47,5 +47,7 @@ class AppController extends Controller {
         {
             $this->layout = 'frontend';
         }
+        $categories = $this->Category->find('all',array('conditions'=>array('active' => true)));
+        $this->set(compact('categories'));
     }
 }

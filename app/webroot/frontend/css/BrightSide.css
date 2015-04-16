@@ -359,3 +359,5 @@ form.searchform input.button {
 .clear { clear: both; }
 .green {	color: #9EC630; }
 .gray  {	color: #BFBFBF; }
+
+.item-article {border-bottom: 3px dotted rgb(107, 151, 188); margin: 5px 0; padding-bottom: 7px}
