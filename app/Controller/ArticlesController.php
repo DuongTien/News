@@ -116,4 +116,16 @@ class ArticlesController extends AppController {
         $articles = $this->paginate('Article');
         $this->set(compact('articles'));
     }
+
+    public function articleCategory($id = null) {
+        $this->Category->id = $id;
+        if (!$this->Category->exists()) {
+            throw new NotFoundException(__('Invalid article'));
+        }
+        $this->Paginator->settings['conditions'] = array('category_id' => $id, 'active' => true);
+        $this->Paginator->settings['limit'] = 5;
+        $articles = $this->paginate('Article');
+        $this->set(compact('articles'));
+        $this->render('index');
+    }
 }
