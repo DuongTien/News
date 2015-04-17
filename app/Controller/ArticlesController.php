@@ -128,4 +128,8 @@ class ArticlesController extends AppController {
         $this->set(compact('articles'));
         $this->render('index');
     }
+
+    public function detail($id = null) {
+//        t
+    }
 }
