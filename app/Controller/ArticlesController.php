@@ -130,6 +130,21 @@ class ArticlesController extends AppController {
     }
 
     public function detail($id = null) {
-//        t
+        $this->Article->id = $id;
+        if (!$this->Article->exists()) {
+            throw new NotFoundException(__('Invalid article'));
+        }
+
+        $article = $this->Article->find('first',array('conditions' => array('id' => $id, 'active' => true)));
+        $this->set(compact('article'));
+    }
+
+    public function searchArticle() {
+        if($this->request->is(array('put','post'))) {
+            $key = $this->request->data['Article']['key'];
+            $articles = $this->Article->find('all',array('conditions' => array('active' => true, 'title LIKE' => '%'.$key.'%')));
+            $this->set(compact('articles'));
+        }
+        $this->render('index');
     }
 }

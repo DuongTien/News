@@ -18,12 +18,14 @@
     <div id="header">
         <h1 id="logo">bright<span class="green">side</span>of<span class="gray">life</span></h1>
         <h2 id="slogan">Put your company slogan here...</h2>
-        <form method="post" class="searchform" action="#">
+        <?php
+            echo $this->Form->create('Article',array('class' => 'searchform', 'url' => array('controller' => 'articles', 'action' => 'searchArticle')));
+        ?>
             <p>
-                <input type="text" name="search_query" class="textbox" />
-                <input type="submit" name="search" class="button" value="Search" />
+                <?php echo $this->Form->input('key',array('textbox','label' => false,'div'=>null))?>
+                <?php echo $this->Form->submit(__('Search'),array('class'=>'button', 'label' => false, 'div' => false))?>
             </p>
-        </form>
+        <?php echo $this->Form->end()?>
         <ul>
             <li id="current"><a href="#"><span>Home</span></a></li>
             <li><a href="#"><span>News</span></a></li>
